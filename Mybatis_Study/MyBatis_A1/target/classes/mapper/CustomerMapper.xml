@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须在当前项目中是唯一的 -->
+<mapper namespace="com.luml.mybatis1.domain.Customer">
+	<resultMap type="Customer" id="customerMap">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="password" property="password"/>
+		<result column="address" property="address"/>
+		<!-- 描述集合属性 -->
+		<!-- 
+			property:集合属性名
+			ofType:集合中元素的类型
+		 -->
+		<collection property="orders" ofType="Order">
+			<id column="oid" property="id"/>
+			<result column="orderNumber" property="orderNumber"/>
+			<result column="orderPrice" property="orderPrice"/>
+		</collection>
+	</resultMap>
+	
+	<!-- 根据Id查询客户，同时查询此客户的订单信息，将订单信息包装成订单集合 -->
+	<select id="selectCustomerById" parameterType="int" resultMap="customerMap">
+		select c.*,o.*,o.id as oid from itcast_customer c,itcast_order o where c.id = o.customerId and c.id = #{id}
+	</select>
+</mapper>

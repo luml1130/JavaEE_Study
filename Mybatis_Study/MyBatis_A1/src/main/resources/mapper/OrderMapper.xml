@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须在当前项目中是唯一的 -->
+<mapper namespace="com.luml.mybatis1.domain.Order">
+	<resultMap type="Order" id="orderMap">
+		<id column="oid" property="id"/>
+		<result column="orderNumber" property="orderNumber"/>
+		<result column="orderPrice" property="orderPrice"/>
+		<!-- 描述单个实体引用属性 -->
+		<!-- 
+			property:属性名
+			javaType:属性的类型
+		 -->
+		<association property="customer" javaType="Customer">
+			<id column="id" property="id"/>
+			<result column="name" property="name"/>
+			<result column="password" property="password"/>
+			<result column="address" property="address"/>
+		</association>
+	</resultMap>
+
+	<!-- 根据Id查询订单信息，同时查询此订单关联的客户对象,将客户对象注入到订单对象的customer属性上 -->
+	<select id="selectOrderById" parameterType="int" resultMap="orderMap">
+		select c.*,o.*,o.id as oid from itcast_customer c,itcast_order o where c.id = o.customerId and o.id = #{id}
+	</select>
+</mapper>
