@@ -6,7 +6,7 @@
 
 	<!-- 当前文件中的sql使用二级缓存 -->
 	<!--指定使用Ehcache缓存-->
-	<!--<cache type="org.mybatis.caches.ehcache.EhcacheCache"/>-->
+	<cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
 
 	<!-- 抽取SQL -->
 	<sql id="allColumns">

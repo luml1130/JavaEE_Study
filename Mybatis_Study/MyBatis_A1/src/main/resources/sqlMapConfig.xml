@@ -7,9 +7,9 @@
 	<properties resource="jdbc.properties"></properties>
 
 	<!-- 开启二级缓存 -->
-	<!--<settings>
+	<settings>
 		<setting name="cacheEnabled" value="true"/>
-	</settings>-->
+	</settings>
 
 	<!-- 自定义别名 -->
 	<typeAliases>
