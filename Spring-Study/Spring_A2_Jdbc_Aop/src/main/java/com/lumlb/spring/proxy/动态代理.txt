@@ -1,0 +1,22 @@
+* 动态代理的方式:
+	* JDK动态的代理 --- > 对实现了接口的Java对象 生成代理对象.Spring框架中.(cglib)
+	* Proxy代理的类:  proxy翻译过来就是代理的意思  可以查看jdkapi
+spring空间默认是使用jdk的动态代理 有第三方的第三方cglib不要求必须实现接口
+
+
+java.lang.reflect 
+类 Proxy
+java.lang.Object
+  java.lang.reflect.Proxy
+构造方法摘要 
+protected  Proxy(InvocationHandler h) 
+          使用其调用处理程序的指定值从子类（通常为动态代理类）构建新的 Proxy 实例。 
+  方法摘要 
+static InvocationHandler getInvocationHandler(Object proxy) 
+          返回指定代理实例的调用处理程序。 
+static Class<?> getProxyClass(ClassLoader loader, Class<?>... interfaces) 
+          返回代理类的 java.lang.Class 对象，并向其提供类加载器和接口数组。 
+static boolean isProxyClass(Class<?> cl) 
+          当且仅当指定的类通过 getProxyClass 方法或 newProxyInstance 方法动态生成为代理类时，返回 true。 
+static Object newProxyInstance(ClassLoader loader, Class<?>[] interfaces, InvocationHandler h) 
+          返回一个指定接口的代理类实例，该接口可以将方法调用指派到指定的调用处理程序。 

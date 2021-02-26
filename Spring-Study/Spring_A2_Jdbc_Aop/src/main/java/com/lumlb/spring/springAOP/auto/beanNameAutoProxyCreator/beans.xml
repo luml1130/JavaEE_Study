@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 目标对象 -->
+	<bean id="userService" class="com.lumlb.spring.springAOP.auto.beanNameAutoProxyCreator.UserService"/>
+	
+	<!-- 通知 -->
+	<bean id="myAdvice" class="com.lumlb.spring.springAOP.auto.defaultAdvisorAutoProxyCreator.MyAdvice"/>
+	
+	<!-- 自动代理 -->
+	<bean id="test" class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<!-- 指定所有已Service结尾的类都产生代理对象 -->
+		<property name="beanNames" value="*Service"/>
+		<!-- 在代理对象中应用那个通知 -->
+		<property name="interceptorNames" value="myAdvice"/>
+	</bean>
+	
+</beans>

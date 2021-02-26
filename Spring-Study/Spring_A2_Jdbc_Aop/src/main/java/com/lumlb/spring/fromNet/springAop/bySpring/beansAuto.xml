@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 目标对象 -->
+	<bean id="human" class="com.lumlb.spring.fromNet.springAop.bySpring.Human"></bean>
+	
+	
+	<bean id="sleepHelper" class="com.lumlb.spring.fromNet.springAop.bySpring.SleepHelper"></bean>
+	
+	<bean id="sleepHelperAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+	     <property name="advice" ref="sleepHelper"/>
+   		 <property name="pattern" value=".*sleep"/>
+	</bean>
+	
+	 <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
+
+	
+</beans>

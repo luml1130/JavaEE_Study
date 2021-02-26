@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 目标对象 -->
+	<bean id="Dog" class="com.lumlb.spring.fromNet.springAop.byJdkProxy.Dog"></bean>
+	
+	<!-- 配置通知 -->
+	<bean id="before" class="com.lumlb.spring.fromNet.springAop.byJdkProxy.MethodBefore"></bean>
+	<bean id="after" class="com.lumlb.spring.fromNet.springAop.byJdkProxy.MethodAfter"></bean>
+	
+	
+	<!-- 为目标对象产生代理对象 -->
+	<bean id="dogProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<!-- 指定代理接口 -->  
+        <property name="interfaces">  
+            <list>  
+                <value>com.lumlb.spring.fromNet.springAop.byJdkProxy.Animal</value>  
+            </list>  
+        </property>  
+		<!-- 通过setter方法注入：为指定的目标对象产生代理  -->
+		<property name="target" ref="Dog"/>
+		<!--  指定拦截器（通知）  --> 
+        <property name="interceptorNames">  
+            <list>  
+                <value>after</value>  
+                <value>before</value>  
+            </list>  
+        </property>  
+	</bean>
+	<!-- 
+		特别注意：只有调用在接口里声明的方法才会经过代理。ProxyFactoryBean为目标对象创建了一个代理对象，
+		并在IOC容器里注册了它。默认情况下，ProxyFactoryBean自动侦测并且代理目标对象所实现的所有接口，
+		所以，如果想代理目标对象的所有接口，可以不必显示地指定这些接口。代理Bean可如下配置：
+		<bean id="dogProxy" class="org.springframework.aop.framework.ProxyFactoryBean">  
+	            <property name="target" ref="Dog"></property>  
+	            <property name="interceptorNames">  
+	                <list>  
+	                    <value>after</value>  
+	                    <value>before</value>  
+	                </list>  
+	            </property>  
+		</bean>  
+	-->
+	
+</beans>

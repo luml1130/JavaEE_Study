@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+						
+	<!-- 使用bean标签注册一个bean对象，由spring框架负责创建UserService对象 -->
+	<bean id="userService" class="com.luml.spring1.UserService" scope="prototype">
+		<property name="userName" value="张三"></property>
+	</bean>
+	
+	
+	<!-- 创建bean对象的方式 -->
+	<!-- 1 调用UserService的无参构造方法 -->
+	<bean id="userService2" class="com.luml.spring1.UserService"/>
+	
+	<!-- 2 使用静态工厂方法 -->
+	<bean id="userService3" class="com.luml.spring1.UserServiceFactory" factory-method="createUserService"/>
+	
+	<!-- 3 使用实例工厂方法 -->
+	<bean id="userServiceFactory2" class="com.luml.spring1.UserServiceFactory2"/>
+	<bean id="userService4" factory-bean="userServiceFactory2" factory-method="createUserService"/>
+
+	<!-- 指定Bean对象的初始化方法和销毁方法 -->
+	<bean id="userService5" class="com.luml.spring1.UserService" init-method="init" destroy-method="destory"></bean>
+	
+	
+	<!-- 依赖注入 -->
+	<!-- 1 通过构造方法注入 -->
+	<bean id="car1" class="com.luml.spring1.Car">
+		<constructor-arg index="0" value="宝马"/>
+		<constructor-arg index="1" value="30"/>
+	</bean>
+	
+	<!-- 2 通过setter方法注入 -->
+	<bean id="car2" class="com.luml.spring1.Car">
+		<property name="name" value="奔驰"/>
+		<property name="price" value="40"/>
+	</bean>
+	
+	<!-- 注入其他bean -->
+	<bean id="employee" class="com.luml.spring1.Employee">
+		<property name="car" ref="car1"/>
+	</bean>
+	
+	<!-- 使用P命名空间 -->
+	<bean id="car3" class="com.luml.spring1.Car" p:name="test" p:price="50"></bean>
+	
+	
+	<!-- 引入其他配置文件  -->
+	<import resource="classpath:beans2.xml"/>
+</beans> 

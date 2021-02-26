@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 目标对象 -->
+	<bean id="userDao" class="com.lumlb.spring.springAOP.advisor.UserDaoImpl"></bean>
+	
+	<!-- 配置通知 -->
+	<bean id="loggerAdvice" class="com.lumlb.spring.springAOP.advisor.LoggerAdvice"></bean>
+	
+	<!-- 为目标对象产生代理对象 -->
+	<bean id="userProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<!-- 通过setter方法注入：为指定的目标对象产生代理 -->
+		<property name="target" ref="userDao"/>
+		<!-- 指定通知 -->
+		<property name="interceptorNames" value="loggerAdvice"></property>
+		<!-- 指定代理对象所需实现的接口 -->
+		<property name="interfaces" value="com.lumlb.spring.springAOP.advisor.IUserDao"></property>
+	</bean>
+	
+	<!-- 为目标对象产生代理对象 -->
+	<!-- <bean id="userProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		通过setter方法注入：为指定的目标对象产生代理
+		<property name="target" ref="userDao"/>
+		 指定拦截器（通知）  
+        <property name="interceptorNames">  
+            <list>  
+                <value>after</value>  
+                <value>before</value>  
+            </list>  
+        </property>  
+	</bean>
+	定义通知  
+    <bean id="before" class="com.zzj.aop.MethodBefore"></bean>  
+    <bean id="after" class="com.zzj.aop.MethodAfter"></bean>   -->
+	
+</beans>

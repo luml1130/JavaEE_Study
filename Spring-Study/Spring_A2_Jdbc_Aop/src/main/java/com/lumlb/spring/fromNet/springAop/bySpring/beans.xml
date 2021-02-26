@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 目标对象 -->
+	<bean id="human" class="com.lumlb.spring.fromNet.springAop.bySpring.Human"></bean>
+	
+	
+	<bean id="sleepHelper" class="com.lumlb.spring.fromNet.springAop.bySpring.SleepHelper"></bean>
+	<bean id="spleepPointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut">
+	  <property name="pattern" value=".*sleep"/>
+	</bean>
+	<bean id="sleepHelperAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+	     <property name="advice" ref="sleepHelper"/>
+	     <property name="pointcut" ref="spleepPointcut"/>
+	</bean>
+	
+	<!-- 为目标对象产生代理对象 -->
+	<bean id="humanProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+	     <property name="target" ref="human"/>
+	     <property name="interceptorNames" value="sleepHelperAdvisor" />
+	     <property name="proxyInterfaces" value="com.lumlb.spring.fromNet.springAop.bySpring.Sleepable" />
+	</bean>
+
+	
+</beans>
