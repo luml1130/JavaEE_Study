@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<!-- 自定义别名 -->
+		<typeAlias type="com.luml.mb.domain.User" alias="User"/>
+	</typeAliases>
+	
+	<!-- 注册SQL映射文件 -->
+	<mappers>
+		<!--<mapper resource="com/luml/mb/domain/UserMapper.xml"></mapper>-->
+		<mapper resource="mapper/UserMapper.xml"></mapper>
+		<!--下面这个不行 不知道为啥-->
+		<!--<package name="com.luml.mb.dao"/>-->
+	</mappers>
+</configuration>

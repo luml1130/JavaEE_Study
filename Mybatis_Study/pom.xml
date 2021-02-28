@@ -18,6 +18,7 @@
 
   <modules>
     <module>MyBatis_A1</module>
+    <module>Spring-Mybatis</module>
     <module>Spring-MybatisPlus</module>
   </modules>
 
