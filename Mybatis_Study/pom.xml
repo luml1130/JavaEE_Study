@@ -8,6 +8,7 @@
   <artifactId>Mybatis_Study</artifactId>
   <version>1.0-SNAPSHOT</version>
   <name>Mybatis_Study</name>
+  <packaging>pom</packaging>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -17,7 +18,7 @@
 
   <modules>
     <module>MyBatis_A1</module>
-    <module>Spring-Mybatis</module>
+    <module>Spring-MybatisPlus</module>
   </modules>
 
 
