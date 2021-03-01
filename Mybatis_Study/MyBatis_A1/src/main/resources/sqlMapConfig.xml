@@ -27,6 +27,7 @@
 		<environment id="development">
 			<!-- 框架提供的事务管理器 -->
 			<transactionManager type="JDBC" />
+			<!--数据源的配置-->
 			<dataSource type="POOLED">
 				<property name="driver" value="${jdbc.driver}" />
 				<property name="url" value="${jdbc.url}" />

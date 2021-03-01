@@ -46,6 +46,7 @@ CREATE TABLE `mybaits_customer`  (
 DROP TABLE IF EXISTS `mybaits_order`;
 CREATE TABLE `mybaits_order`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+   `customerId` int NOT NULL,
   `orderNumber` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '订单号',
   `orderPrice` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '订单价格',
   PRIMARY KEY (`id`) USING BTREE

@@ -22,6 +22,6 @@
 	
 	<!-- 根据Id查询客户，同时查询此客户的订单信息，将订单信息包装成订单集合 -->
 	<select id="selectCustomerById" parameterType="int" resultMap="customerMap">
-		select c.*,o.*,o.id as oid from itcast_customer c,itcast_order o where c.id = o.customerId and c.id = #{id}
+		select c.*,o.*,o.id as oid from mybaits_customer c,mybaits_order o where c.id = o.customerId and c.id = #{id}
 	</select>
 </mapper>

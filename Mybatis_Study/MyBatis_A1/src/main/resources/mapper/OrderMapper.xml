@@ -22,6 +22,8 @@
 
 	<!-- 根据Id查询订单信息，同时查询此订单关联的客户对象,将客户对象注入到订单对象的customer属性上 -->
 	<select id="selectOrderById" parameterType="int" resultMap="orderMap">
-		select c.*,o.*,o.id as oid from itcast_customer c,itcast_order o where c.id = o.customerId and o.id = #{id}
+		select c.*,o.*,o.id as oid
+		from mybaits_customer c,mybaits_order o
+		where c.id = o.customerId and o.id = #{id}
 	</select>
 </mapper>

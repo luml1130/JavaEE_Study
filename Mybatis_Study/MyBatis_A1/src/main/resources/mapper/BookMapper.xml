@@ -18,21 +18,21 @@
 		resultType:结果类型
 	 -->
 	<select id="selectBookById" parameterType="string" resultType="Book">
-		select id,bookName as name,bookPrice as price from itcast_book where id = #{id}
+		select id,bookName as name,bookPrice as price from mybaits_book where id = #{id}
 	</select>
 	
 	<select id="selectBookById2" parameterType="string" resultMap="bookMap">
-		select * from itcast_book where id = #{id}
+		select * from mybaits_book where id = #{id}
 	</select>
 	
 	<!-- 将查询结果包装成map类型的对象返回  -->
 	<select id="selectBookById4Map" parameterType="string" resultType="hashmap">
-		select * from itcast_book where id = #{id}
+		select * from mybaits_book where id = #{id}
 	</select>
 	
 	<!-- 插入数据 -->
 	<insert id="saveBook4Map" parameterType="hashmap">
-		insert into itcast_book(id,bookName,bookPrice)
+		insert into mybaits_book(id,bookName,bookPrice)
 			values (#{id},#{name},#{price})
 	</insert>
 </mapper>
